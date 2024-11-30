@@ -35,13 +35,17 @@ int main(){
         pist1_saat[i] = ucak_saat[j];
     }
 
-    for(i = 0; i < ucaksayisi / 2; i++){
+    for(i = 0; i < (ucaksayisi + 1) / 2; i++){
         j = i + 1;
         main_saat1[i] = pist1_saat[i] + cooldown;
-        minus1 = main_saat1[i] - pist1_saat[j];
-        if(main_saat1[i] > pist1_saat[j]){
+        printf("mainsaat1: %d\n", main_saat1[i]);
+        minus1 /*bunu array yap*/ = main_saat1[i] - pist1_saat[j];
+        printf("minus1: %d\n",minus1);
+        if(main_saat1[i] > pist1_saat[j] && j < (ucaksayisi + 1) / 2){
             pist1_saat[j] = main_saat1[i];
+            printf("pist1saat: %d\n", pist1_saat[i]);
             count1 = count1 + minus1;
+            printf("count: %f\n",count1);
         }
     }
 
@@ -61,12 +65,12 @@ int main(){
 
     for(i = 0; i < ucaksayisi / 2; i++){
         j = i + 1;
+        minus2 = 0;
         main_saat2[i] = pist2_saat[i] + cooldown;
         minus2 = main_saat2[i] - pist2_saat[j];
-        if(main_saat2[i] > pist2_saat[j]){
+        if(main_saat2[i] > pist2_saat[j] && j < (ucaksayisi / 2)){
             pist2_saat[j] = main_saat2[i];
-            count2 = count2 + minus2;
-        }
+            count2 = count2 + minus2;        }
     }
 
     printf("\nPIST 2 :\nNUMARA    KALKIS SAATI\n");
