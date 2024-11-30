@@ -1,8 +1,7 @@
 #include <stdio.h>
 
 int main(){
-    int ucaksayisi, i, j, cooldown;
-    int minus1, minus2;
+    int ucaksayisi, i, j, cooldown, count2 = 0;
 
     printf("Ucak sayisi giriniz:\n");
     scanf("%d", &ucaksayisi);
@@ -15,8 +14,7 @@ int main(){
     int pist2_saat[ucaksayisi / 2];
     int main_saat1[(ucaksayisi + 1) / 2];
     int main_saat2[ucaksayisi / 2];
-    float p2_ort, p1_ort;
-    float count1 = 0.0, count2 = 0.0;
+    float p2_ort, p1_ort, count1 = 0;
 
     printf("Pistten kac dakika arayla ucak kalkabiliyor? :\n");
     scanf("%d",&cooldown);
@@ -35,23 +33,24 @@ int main(){
         pist1_saat[i] = ucak_saat[j];
     }
 
-    for(i = 0; i < ucaksayisi / 2; i++){
+    for(i = 0; i < (ucaksayisi + 1) / 2; i++){
         j = i + 1;
         main_saat1[i] = pist1_saat[i] + cooldown;
-        minus1 = main_saat1[i] - pist1_saat[j];
         if(main_saat1[i] > pist1_saat[j]){
             pist1_saat[j] = main_saat1[i];
-            count1 = count1 + minus1;
+            count1 = count1 + (main_saat1[i] - pist1_saat[i]);
+            printf("%f\n",count1);
         }
     }
-
-    printf("\nPIST 1 :\nNUMARA    KALKIS SAATI\n");
+    /*printf("\nPIST 1 :\nNUMARA    KALKIS SAATI\n");
     for(i = 0;  i < (ucaksayisi + 1) / 2; i++){
         printf("%d          %d\n", pist1_num[i], pist1_saat[i]);
-    }
+    }*/
 
-    p1_ort = (count1 / (float)((ucaksayisi + 1) / 2));
-    printf("Ortalama: %f\n",p1_ort);
+    p1_ort = (float)((float)count1 / ((ucaksayisi + 1) / 2));
+    printf("%f\n",count1);
+    printf("he :%d\n",(ucaksayisi + 1)/2);
+    printf("Ortalama: %f\n\n",p1_ort);
 
     for(i = 0; i < ucaksayisi / 2; i++){
         j = i*2 + 1;
@@ -62,19 +61,18 @@ int main(){
     for(i = 0; i < ucaksayisi / 2; i++){
         j = i + 1;
         main_saat2[i] = pist2_saat[i] + cooldown;
-        minus2 = main_saat2[i] - pist2_saat[j];
         if(main_saat2[i] > pist2_saat[j]){
             pist2_saat[j] = main_saat2[i];
-            count2 = count2 + minus2;
+            count2 = count2 + (main_saat1[i] - pist1_saat[i]);
         }
     }
 
-    printf("\nPIST 2 :\nNUMARA    KALKIS SAATI\n");
+    /*printf("PIST 2 :\nNUMARA    KALKIS SAATI\n");
     for(i = 0; i < ucaksayisi / 2; i++){
-        printf("%d          %d\n", pist2_num[i], pist2_saat[i]);
-    }
+        printf("%d          %d\n", pist2_num[i], pist1_saat[i]);
+    }*/
 
-    p2_ort = (count2 / (float)((ucaksayisi) / 2));
+    p2_ort = (float)(count2 / ((ucaksayisi) / 2));
     printf("Ortalama: %f\n",p2_ort);
 
     return 0;
